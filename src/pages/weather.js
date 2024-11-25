@@ -1,7 +1,8 @@
+import './style.css'
 function Weather()  {
     return (
-             <div>
-                hi
+             <div className="container1">
+                
              </div>
     );
 } 
