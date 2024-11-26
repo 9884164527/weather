@@ -54,7 +54,7 @@ function Weather()  {
                     <div className='weather-forecast'>
                         <img src={wind} alt='wind' className='wind-img' />
                      
-                     <p>Wind Speed: 5 mph</p>
+                     <p>Wind Speed: 10 mph</p>
                     
                     
 
