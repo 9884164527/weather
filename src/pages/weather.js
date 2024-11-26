@@ -27,7 +27,7 @@ function Weather()  {
     return (
         <div className="body">
             <div className='container1'>
-                <h1 className='title'>jeevi</h1>
+                <h1 className='title'>jeevi helloo</h1>
                 <div className='search-container' for='cityname'>
 
                     <input type='text' placeholder='Enter city name' name='cityname' className='input-cityname' value={city} onChange={e => setCity(e.target.value)} />
