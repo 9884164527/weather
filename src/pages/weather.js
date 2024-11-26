@@ -38,14 +38,14 @@ function Weather()  {
 
                 <img src={sun} alt='sun' className='sun-img' />
                 <h2 className='temperature' >°C</h2>
-                <h3 className='city'>New York</h3>
+                <h3 className='city'>korea</h3>
 
 
                 <div className='weather-data'>
                     <div className='weather-details'>
                        <img src={human} alt='human' className='human-img'/>
                         
-                            <p>Humidity: 80%</p>
+                            <p>Humidity: 90%</p>
                             
                             
                         
