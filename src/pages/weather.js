@@ -38,7 +38,7 @@ function Weather()  {
 
                 <img src={sun} alt='sun' className='sun-img' />
                 <h2 className='temperature' >°C</h2>
-                <h3 className='city'>New York</h3>
+                <h3 className='city'>korea</h3>
 
 
                 <div className='weather-data'>
