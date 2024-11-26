@@ -45,7 +45,7 @@ function Weather()  {
                     <div className='weather-details'>
                        <img src={human} alt='human' className='human-img'/>
                         
-                            <p>Humidity: 80%</p>
+                            <p>Humidity: 90%</p>
                             
                             
                         
