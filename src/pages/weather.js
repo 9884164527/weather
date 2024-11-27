@@ -1,70 +1,55 @@
+// src/components/Weather.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './style.css'
+const Weather = () => {
+    const [weather, setWeather] = useState(null);
+    const [city, setCity] = useState('');
+    const [time, setTime] = useState('');
 
-import * as React from 'react';
-import SearchIcon from '@mui/icons-material/Search';
-import sun from './assets/sun.png';
-import wind from './assets/wind.png';
-import human from './assets/human.png';
-import  { Axios } from 'axios';
+    useEffect(() => { const updateTime = () => { const currentDate = new Date(); 
+        setTime(currentDate.toLocaleTimeString()); };
+         const timerId = setInterval(updateTime, 1000);
+          return () => clearInterval(timerId); }, []);
 
-import { useState } from 'react';
-function Weather()  {
-   
-     const [city,setCity] = useState("");
-     const [weather, setWeather] = useState(null);
-
-     const API_KEY = '9a2050462ce9fadf3557cc4291dcb8ba';
-    const getWeather = async () => {
+    const fetchWeather = async () => {
         try {
-            const response = await Axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e01a0bbd240562ef02389ccabcf02985`);
             setWeather(response.data);
-
-        }
-        catch (err) {
-            alert('error getting weather data')
+        } catch (error) {
+            console.error("Error fetching weather data:", error);
         }
     };
+
     return (
-        <div className="body">
-            <div className='container1'>
-                <h1 className='title'>jeevi helloo</h1>
-                <div className='search-container' for='cityname'>
-
-                    <input type='text' placeholder='Enter city name' name='cityname' className='input-cityname' value={city} onChange={e => setCity(e.target.value)} />
-                    <button className='search-icon' onClick={getWeather}>
-                        <SearchIcon fontSize='medium' />
-                    </button>
-                </div>
-
-                <img src={sun} alt='sun' className='sun-img' />
-                <h2 className='temperature' >°C</h2>
-                <h3 className='city'>india</h3>
-
-
-                <div className='weather-data'>
-                    <div className='weather-details'>
-                       <img src={human} alt='human' className='human-img'/>
-                        
-                            <p>Humidity: 90%</p>
-                            
-                            
-                        
+        <div className='body'>
+            <div className='container'>
+                <input
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="Enter city"
+                />
+                <button onClick={fetchWeather}>Get Weather</button>
+                {weather && (
+                    <div className='weather-info'>
+                        <h2>{weather.name}</h2>
+                        <h2 className='time'>Current Time: {time}</h2>
+                        <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="Weather icon" />
+                        <p>{weather.weather[0].description}</p>
+                        <p>{Math.round(weather.main.temp - 273.15)}°C</p>
+                        <p>Feels Like: {Math.round(weather.main.feels_like - 273.15)}°C</p>
+                        <p>Humidity: {weather.main.humidity}%</p>
+                        <p>Wind Speed: {weather.wind.speed} km/h</p>
+                        <div className="cloud"></div>
+                        <div className="sun"></div>
                     </div>
-
-                    <div className='weather-forecast'>
-                        <img src={wind} alt='wind' className='wind-img' />
-                     
-                     <p>Wind Speed: 10 mph</p>
-                    
-                    
-
-                    </div>
-
-                </div>
-
-
+                )}
             </div>
         </div>
+
     );
-}
+
+};
+
 export default Weather;
