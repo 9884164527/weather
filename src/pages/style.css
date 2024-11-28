@@ -233,6 +233,8 @@ button:hover {
     }
     .forecast {
         width: 100%;
+        
+        
         flex-wrap: wrap;
         display: flex;
         flex-direction: column;
@@ -241,9 +243,11 @@ button:hover {
         justify-content: center;
         overflow-x: hidden;
         overflow-y: hidden;
+        
     }
 
     .forecast-item {
         width: 80%;
+
     }
 }
