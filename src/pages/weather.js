@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
+import  logo from './assets/weather-app.png'
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
@@ -8,6 +10,7 @@ const Weather = () => {
   const [time, setTime] = useState('');
   const [error, setError] = useState('');
   const [forecast, setForecast] = useState([]);
+  
 
   useEffect(() => {
     const updateTime = () => {
@@ -36,21 +39,46 @@ const Weather = () => {
   };
 
   return (
+    
     <div className="overlay">
+      <div className="header">
+        <div className="logo-box">
+          
+        <img src={logo} alt='logo'/>
+        <h1>Weather App</h1>
+        <p>Get the current weather and 5-day forecast for any city</p>
+        </div>
+    
+          <div className="date-box">
+            <p>Date: {new Date().toLocaleDateString()}</p>
+            <p>Time: {time}</p>
+            <p>Day: {new Date().toLocaleString('default', { weekday: 'long' })}</p>
+            <p>Month: {new Date().toLocaleString('default', { month: 'long' })}</p>
+            <p>Year: {new Date().getFullYear()}</p>
+          </div>
+        
+      </div>
       <div className="container">
+        <div className='container2'>
+       <div className='search-box'>
+       <LocationOnIcon  /> 
         <input
+        
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter city name"
         />
+        
+        </div>
         <button onClick={fetchWeather}>Get Weather</button>
+        </div>
         {error && <p className="error">{error}</p>}
         <div className="weather-box"> 
           {weather && (
             <div className="weather-info">
               <h2>{weather.name}</h2>
-              <h2 className="time">Current Time: {time}</h2>
+              
               <img
                 src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                 alt="Weather icon"
