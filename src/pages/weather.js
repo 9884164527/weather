@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import './style.css';
 import logo from './assets/weather-app.png';
@@ -12,7 +12,9 @@ const Weather = () => {
   const [error, setError] = useState('');
   const [forecast, setForecast] = useState([]);
   const [isListening, setIsListening] = useState(false);
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+  // Initialize SpeechRecognition object using useMemo
+  const recognition = useMemo(() => new (window.SpeechRecognition || window.webkitSpeechRecognition)(), []);
 
   useEffect(() => {
     const updateTime = () => {
@@ -27,7 +29,7 @@ const Weather = () => {
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       setCity(transcript);
-      fetchWeather(transcript);  // Fetch weather data based on recognized city
+      fetchWeather(transcript); // Fetch weather data based on recognized city
     };
     recognition.onerror = (event) => {
       console.error('Speech Recognition Error:', event.error);
@@ -118,18 +120,13 @@ const Weather = () => {
             <div key={index} className="forecast-item">
               <p>{new Date(day.dt_txt).toLocaleDateString()}</p>
               <p>{Math.round(day.main.temp - 273.15)}°C</p>
-
-
               <img
                 src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt="Weather icon"
               />
               <p>{day.weather[0].description}</p>
-
             </div>
-
           ))}
-
         </div>
       </div>
     </div>
