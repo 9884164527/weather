@@ -10,6 +10,7 @@ const Weather = () => {
   const [city, setCity] = useState('');
   const [time, setTime] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [forecast, setForecast] = useState([]);
   const [isListening, setIsListening] = useState(false);
 
@@ -48,6 +49,7 @@ const Weather = () => {
   };
 
   const fetchWeather = async (cityName) => {
+    setIsLoading(true);
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=e01a0bbd240562ef02389ccabcf02985`
@@ -61,6 +63,8 @@ const Weather = () => {
       setError('');
     } catch (error) {
       setError('Could not fetch weather data');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -82,7 +86,6 @@ const Weather = () => {
       </div>
       <div className="container">
         <div className='container2'>
-
           <div className='search-box'>
             <div className='input-box'>
               <LocationOnIcon />
@@ -98,6 +101,7 @@ const Weather = () => {
           </div>
           <button className='weather-button' onClick={() => fetchWeather(city)}>Get Weather</button>
         </div>
+        {isLoading && <div className="loading"></div>}
         {error && <p className="error">{error}</p>}
         <div className="weather-box">
           {weather && (
@@ -112,6 +116,10 @@ const Weather = () => {
               <p>Feels Like: {Math.round(weather.main.feels_like - 273.15)}°C</p>
               <p>Humidity: {weather.main.humidity}%</p>
               <p>Wind Speed: {weather.wind.speed} km/h</p>
+              <p>Sunrise: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</p>
+              <p>Sunset: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</p>
+              <p>Country: {weather.sys.country}</p>
+              
             </div>
           )}
         </div>
@@ -119,12 +127,14 @@ const Weather = () => {
           {forecast.map((day, index) => (
             <div key={index} className="forecast-item">
               <p>{new Date(day.dt_txt).toLocaleDateString()}</p>
-              <p>{Math.round(day.main.temp - 273.15)}°C</p>
               <img
                 src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt="Weather icon"
-              />
+                />
               <p>{day.weather[0].description}</p>
+                <p>{Math.round(day.main.temp - 273.15)}°C</p>
+          
+              
             </div>
           ))}
         </div>

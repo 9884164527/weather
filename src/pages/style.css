@@ -9,7 +9,7 @@
 body {
     margin: 0;
     padding: 0;
-    
+
     background: url('./assets/high-angle-shot-beautiful-cityscape-sunset-new-york-city-usa.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Roboto', sans-serif;
@@ -21,9 +21,11 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+    max-height: max-content;
     
+    background: rgba(0, 0, 0, 0.5);
+
 }
 
 .header {
@@ -190,11 +192,13 @@ input[type='text']:focus {
     width: 70px;
     display: flex;
     justify-content: center;
-    transition: all 0.1s ;
+    transition: all 0.1s;
 }
+
 .mic:active {
     scale: 1.3;
 }
+
 .weather-button {
     padding: 18px 28px;
     border: none;
@@ -214,6 +218,26 @@ input[type='text']:focus {
     scale: 0.9;
 }
 
+.loading {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .error {
     color: whitesmoke;
     margin-top: 10px;
@@ -222,12 +246,14 @@ input[type='text']:focus {
 .weather-box {
     display: flex;
     justify-content: center;
-  
-  
+    
+
 }
+
 .weather-info {
     margin-top: 20px;
     width: 320px;
+    
     padding: 20px;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
