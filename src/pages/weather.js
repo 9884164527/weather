@@ -72,9 +72,14 @@ const Weather = () => {
     <div className="overlay">
       <div className="header">
         <div className="logo-box">
-          <img src={logo} alt='logo' />
-          <h1>Weather App</h1>
+          <div>
+            <img src={logo} alt='logo' />
+            <h1>Weather App</h1>
+
+          </div>
           <p>Get the current weather and 5-day forecast for any city</p>
+          
+
         </div>
         <div className="date-box">
           <p>Date: {new Date().toLocaleDateString()}</p>
@@ -119,7 +124,7 @@ const Weather = () => {
               <p>Sunrise: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</p>
               <p>Sunset: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</p>
               <p>Country: {weather.sys.country}</p>
-              
+
             </div>
           )}
         </div>
@@ -130,11 +135,11 @@ const Weather = () => {
               <img
                 src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                 alt="Weather icon"
-                />
+              />
               <p>{day.weather[0].description}</p>
-                <p>{Math.round(day.main.temp - 273.15)}°C</p>
-          
-              
+              <p>{Math.round(day.main.temp - 273.15)}°C</p>
+
+
             </div>
           ))}
         </div>

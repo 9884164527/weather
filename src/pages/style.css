@@ -47,7 +47,7 @@ body {
     display: flex;
     align-items: start;
     justify-content: center;
-
+    
     flex-direction: column;
 }
 
@@ -56,7 +56,15 @@ body {
     height: 50px;
     margin-bottom: 10px;
 }
-
+.logo-box div {
+    width: max-content;
+    height: max-content;
+    align-items: center;
+    font-size: 0.9em;
+    
+    font-weight: 300;
+    display: flex;
+}
 .date-box {
     width: 50%;
     display: flex;
@@ -402,6 +410,7 @@ input[type='text']:focus {
     .logo-box p {
         font-size: 0.8em;
         margin-top: 4px;
+        text-align: center;
     }
 
     .logo-box img {
