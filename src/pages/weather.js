@@ -22,7 +22,7 @@ const Weather = () => {
       const currentDate = new Date();
       setTime(currentDate.toLocaleTimeString());
     };
-    const timerId = setInterval(updateTime, 2000);
+    const timerId = setInterval(updateTime, 1000);
     return () => clearInterval(timerId);
   }, []);
 
