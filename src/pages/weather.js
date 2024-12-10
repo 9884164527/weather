@@ -22,7 +22,7 @@ const Weather = () => {
       const currentDate = new Date();
       setTime(currentDate.toLocaleTimeString());
     };
-    const timerId = setInterval(updateTime, 1000);
+    const timerId = setInterval(updateTime, 2000);
     return () => clearInterval(timerId);
   }, []);
 
@@ -78,7 +78,7 @@ const Weather = () => {
 
           </div>
           <p>Get the current weather and 3hr forecast for any city</p>
-          
+
 
         </div>
         <div className="date-box">
