@@ -77,7 +77,7 @@ const Weather = () => {
             <h1>Weather App</h1>
 
           </div>
-          <p>Get the current weather and 3hrs forecast for any city</p>
+          <p>Get the current weather and 3hr forecast for any city</p>
           
 
         </div>
