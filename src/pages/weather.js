@@ -22,7 +22,7 @@ const Weather = () => {
       const currentDate = new Date();
       setTime(currentDate.toLocaleTimeString());
     };
-    const timerId = setInterval(updateTime, 2000);
+    const timerId = setInterval(updateTime, 1000);
     return () => clearInterval(timerId);
   }, []);
 
@@ -78,7 +78,7 @@ const Weather = () => {
 
           </div>
           <p>Get the current weather and 3hr forecast for any city</p>
-
+          
 
         </div>
         <div className="date-box">
@@ -125,27 +125,11 @@ const Weather = () => {
               <p>Sunset: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</p>
               <p>Country: {weather.sys.country}</p>
 
-            </div>
-          )}
-        </div>
-        <div className="forecast">
-          {forecast.map((day, index) => (
-            <div key={index} className="forecast-item">
-              <p>{new Date(day.dt_txt).toLocaleDateString()}</p>
-              <img
-                src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                alt="Weather icon"
-              />
-              <p>{day.weather[0].description}</p>
-              <p>{Math.round(day.main.temp - 273.15)}°C</p>
+                </div>
 
 
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
-};
-
+    );
+}
 export default Weather;
