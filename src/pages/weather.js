@@ -27,7 +27,7 @@ function Weather()  {
     return (
         <div className="body">
             <div className='container1'>
-                <h1 className='title'>WEATHER APP</h1>
+                <h1 className='title'>jeevi</h1>
                 <div className='search-container' for='cityname'>
 
                     <input type='text' placeholder='Enter city name' name='cityname' className='input-cityname' value={city} onChange={e => setCity(e.target.value)} />
@@ -38,14 +38,14 @@ function Weather()  {
 
                 <img src={sun} alt='sun' className='sun-img' />
                 <h2 className='temperature' >°C</h2>
-                <h3 className='city'>korea</h3>
+                <h3 className='city'>South korea</h3>
 
 
                 <div className='weather-data'>
                     <div className='weather-details'>
                        <img src={human} alt='human' className='human-img'/>
                         
-                            <p>Humidity: 90%</p>
+                            <p>Humidity: 50%</p>
                             
                             
                         
