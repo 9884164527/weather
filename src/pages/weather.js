@@ -4,6 +4,7 @@ import './style.css';
 import logo from './assets/weather-app.png';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MicIcon from '@mui/icons-material/Mic';
+import { Button } from '@mui/material';
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
@@ -68,6 +69,13 @@ const Weather = () => {
     }
   };
 
+  // Add event listener for Enter key
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      fetchWeather(city);
+    }
+  };
+
   return (
     <div className="overlay">
       <div className="header">
@@ -75,11 +83,8 @@ const Weather = () => {
           <div>
             <img src={logo} alt='logo' />
             <h1>Weather App</h1>
-
           </div>
           <p>Get the current weather and 3hr forecast for any city</p>
-
-
         </div>
         <div className="date-box">
           <p>Date: {new Date().toLocaleDateString()}</p>
@@ -98,6 +103,7 @@ const Weather = () => {
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
+                onKeyDown={handleKeyDown}  // Add the event listener here
                 placeholder="Enter city name"
               /></div>
             <button className='mic' onClick={isListening ? stopListening : startListening}>
@@ -124,7 +130,6 @@ const Weather = () => {
               <p>Sunrise: {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}</p>
               <p>Sunset: {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}</p>
               <p>Country: {weather.sys.country}</p>
-
             </div>
           )}
         </div>
@@ -138,8 +143,6 @@ const Weather = () => {
               />
               <p>{day.weather[0].description}</p>
               <p>{Math.round(day.main.temp - 273.15)}°C</p>
-
-
             </div>
           ))}
         </div>
