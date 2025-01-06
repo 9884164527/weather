@@ -4,7 +4,7 @@ import './style.css';
 import logo from './assets/weather-app.png';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MicIcon from '@mui/icons-material/Mic';
-import { Button } from '@mui/material';
+
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
